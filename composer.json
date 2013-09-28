@@ -1,5 +1,5 @@
 {
-    "name": "carte-blanche/tools",
+    "name": "carte-blanche/tool-defaults",
     "type": "carte-blanche-tool",
     "description": "Internal tools for the CarteBlanche framework.",
     "keywords": [ "carte blanche", "tools" ],
