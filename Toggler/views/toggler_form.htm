@@ -1,0 +1,22 @@
+<?php
+if (empty($name)) $name = 'std_toggle';
+if (empty($value)) $value = false;
+
+$enbl_url = build_url(array(
+	'model'=>$table_name, 'id'=>$object_id, 'controller'=>'crud', 'altdb'=>$altdb,
+	'action'=>'toggle', 'toggler'=>'on', 'field' => $name,
+));
+$disbl_url = build_url(array(
+	'model'=>$table_name, 'id'=>$object_id, 'controller'=>'crud', 'altdb'=>$altdb,
+	'action'=>'toggle', 'toggler'=>'off', 'field' => $name,
+));
+?>
+<?php if (1 == $value) : ?>
+	<abbr title="Enabled" class="toggler_on">ON</abbr>
+	&nbsp;
+	<small>[<a href="<?php echo $disbl_url; ?>" title="Disable">off</a>]</small>
+<?php else : ?>
+	<abbr title="Disabled" class="toggler_off">OFF</abbr>
+	&nbsp;
+	<small>[<a href="<?php echo $enbl_url; ?>" title="Enable">on</a>]</small>
+<?php endif; ?>

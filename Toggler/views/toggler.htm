@@ -1,0 +1,21 @@
+<?php
+if (empty($name)) $name = 'std_toggle';
+if (empty($value)) $value = false;
+
+$_tglr_title = 1 == $value ? 'Enabled' : 'Disabled';
+$_tglr_cls = 1 == $value ? 'toggler_on' : 'toggler_off';
+$_tglr_val = 1 == $value ? 'ON' : 'OFF';
+$_tglr_hdlr_title = 1 == $value ? 'Disable' : 'Enable';
+$_tglr_hdlr_val = 1 == $value ? 'off' : 'on';
+$tglr_url = build_url(array(
+	'model'=>$table_name, 'id'=>$object_id, 'controller'=>'crud', 'altdb'=>$altdb,
+	'action'=>'toggle', 'field' => $name,
+	'toggler'=>(1 == $value ? 'off' : 'on'),
+));
+
+echo <<<EOT
+	<abbr title="$_tglr_title" class="$_tglr_cls">$_tglr_val</abbr>
+	&nbsp;
+	<small>[<a href="$tglr_url" title="$_tglr_hdlr_title">$_tglr_hdlr_val</a>]</small>
+EOT;
+?>

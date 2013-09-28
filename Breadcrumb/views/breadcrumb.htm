@@ -1,0 +1,35 @@
+<?php
+
+if (empty($separator)) $separator = '&nbsp;&gt;&nbsp;';
+if (empty($links)) $links = array();
+
+?>
+<div class="breadcrumb">
+
+<?php if (!empty($home)) : ?>
+	<div itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+		<a href="<?php echo $home; ?>" title="Back to homepage" itemprop="url">
+			<span itemprop="title">Home</span>
+		</a>
+	</div>
+	<?php echo $separator; ?>
+<?php endif; ?>
+
+<?php if (!empty($links)) : ?>
+	<?php foreach($links as $_link) : ?>
+	<div itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+		<a href="<?php echo $_link['url']; ?>" title="Back to <?php echo $_link['title']; ?>" itemprop="url">
+			<span itemprop="title"><?php echo $_link['title']; ?></span>
+		</a>
+	</div>
+	<?php echo $separator; ?>
+	<?php endforeach; ?>
+<?php endif; ?>
+
+<?php if (!empty($current)) : ?>
+	<div itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+		<span itemprop="title"><strong><?php echo $current; ?></strong></span>
+	</div>
+<?php endif; ?>
+
+</div>

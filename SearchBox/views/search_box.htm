@@ -1,0 +1,23 @@
+<?php
+
+if (empty($hiddens)) $hiddens=array();
+
+?>
+<div class="comment forscreens search_box">
+	<form method="get" action="<?php echo get_path('root_file'); ?>" name="searchbox">
+<?php foreach($hiddens as $_hidden_name=>$_hidden_value): ?>
+		<input type="hidden" name="<?php echo $_hidden_name; ?>" value="<?php echo $_hidden_value; ?>" />
+<?php endforeach; ?>
+		<label for="search_field" class="invisible">Search string</label>
+		<input id="search_field" type="text" name="search" value="<?php echo str_replace('"', '&quot;', $search_str); ?>" title="Type a string or expression to search. Logical operators are allowed." />
+		<input type="submit" name="makesearch" value="search" />
+<?php if (!empty($search_str)) : ?>
+		<input type="submit" name="clearsearch" value="clear" onclick="this.form.search.value='';" />
+<?php endif; ?>
+<?php if (!empty($advanced_search) && true===$advanced_search) : ?>
+		[<a href="<?php echo build_url(array(
+			'controller'=>'data', 'action'=>'searchHelp', 'return'=>current_url(true)
+		)); ?>" title="Get some help on how this search box works ...">?</a>]
+<?php endif; ?>
+	</form>
+</div>

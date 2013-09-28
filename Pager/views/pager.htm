@@ -1,0 +1,68 @@
+<?php
+
+if (empty($total)) return '';
+$pager_limit_id =  \Library\Helper\Html::getNewId('page_limit');
+
+?>
+<div class="comment pager">
+
+<?php if ($total>$limit) : ?>
+Paginate : 
+
+<?php if (($current_page-1) != 1 && ($current_page-1) > 0) : ?>
+	<span class="pagination_link">
+		<a href="<?php echo sprintf($pager_link_mask, 0); ?>" title="Reach first page">&le;</a>
+	</span>
+<?php endif; ?>
+
+<?php if ($current_page != 1) : ?>
+	<span class="pagination_link">
+		<a href="<?php echo sprintf($pager_link_mask, (($current_page-2) * $limit)); ?>" title="Reach previous page">&lt;</a>
+	</span>
+<?php endif; ?>
+
+<?php for($i=$first_page; $i<=$last_page; $i++) : ?>
+	<span class="pagination_link">
+	<?php if ($i == $current_page) : ?>
+ 		<strong><?php echo $i; ?></strong> 
+	<?php else: ?>
+		<a href="<?php echo sprintf($pager_link_mask, (($i-1) * $limit)); ?>" title="Reach this page"><?php echo $i; ?></a>
+	<?php endif; ?>
+	</span>
+<?php endfor; ?>
+
+<?php if ($current_page < $total_pages) : ?>
+	<span class="pagination_link">
+		<a href="<?php echo sprintf($pager_link_mask, ($current_page * $limit)); ?>" title="Reach next page">&gt;</a>
+	</span>
+<?php endif; ?>
+
+<?php if (($current_page+1) < $total_pages) : ?>
+	<span class="pagination_link">
+		<a href="<?php echo sprintf($pager_link_mask, (($total_pages-1) * $limit)); ?>" title="Reach last page">&ge;</a>
+	</span>
+<?php endif; ?>
+
+	<?php if (!isset($items_select) || $items_select!==false) : ?>
+&nbsp;|&nbsp;
+	<?php endif; ?>
+<?php endif; ?>
+
+<?php if (!isset($items_select) || $items_select!==false) : ?>
+<form method="get" action="<?php echo get_path('root_file'); ?>">
+	<label for="<?php echo $pager_limit_id; ?>">Items per page : </label>
+	<select id="<?php echo $pager_limit_id; ?>" name="limit" onchange="window.document.location.href=this.options[this.selectedIndex].value;">
+<?php foreach( array(5,10,15,20,25) as $_lmt) : ?>
+		<option value="<?php echo sprintf($limiter_link_mask, $_lmt); ?>"<?php echo( ($limit==$_lmt) ? ' selected="selected"' : '' ); ?>><?php echo $_lmt; ?></option>
+<?php endforeach; ?>
+	</select>
+<noscript>
+	<input type="hidden" name="offset" value="<?php echo $offset; ?>" />
+	<input type="hidden" name="table" value="<?php echo $table_name; ?>" />
+	<input type="submit" value="go" />
+</noscript>
+</form>
+<?php endif; ?>
+
+</div>
+<br class="clear" />

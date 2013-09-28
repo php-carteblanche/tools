@@ -1,0 +1,26 @@
+<?php
+
+if (empty($document)) return '';
+if (!isset($document_url)) $document_url = '';
+if (!isset($max_width)) $max_width = 200;
+if (!isset($max_height)) $max_height = 200;
+if (!isset($display_image)) $display_image=true;
+if (!isset($html_content)) $html_content=true;
+
+if (true===$display_image && $document->isImage())
+{
+  $_img = new \MediaProcessing\ImageFilter\ImageFilter(
+    $document->getRealPath(), null, 'resize', array('max_width'=>$max_width,'max_height'=>$max_height)
+  );
+  echo '<a href="'.$document_url.'" title="See this image"><img src="'.$_img->process()->getTargetWebPath().'" border="0" alt="blob image" /></a>';
+}
+elseif (true===$html_content)
+{
+  echo '[<a href="'.$document_url.'" title="See this document">'.strtoupper($document->guessExtension()).'</a>] (<em>'.$document->getHumanSize().'</em>)';
+}
+else
+{
+  echo strtoupper($document->guessExtension()).' ('.$document->getHumanSize().')';
+}
+
+?>

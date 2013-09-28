@@ -1,0 +1,13 @@
+<?php
+
+if (empty($content_id)) return '';
+$toolbox_id = _getid('toolbox',true,true);
+?>
+<div class="forscreens text_tools_box">
+	<p><a href="javascript:show_hide('<?php echo $toolbox_id; ?>','show');" title="Show/Hide tools">+ Toolbox</a></p>
+	<div id="<?php echo $toolbox_id; ?>" class="hide">
+		<button onclick="font_size('+','<?php echo $content_id; ?>',null,'15px');" title="Increase font-size of block's content"><small>A</small><big>A</big></button>
+		<button onclick="font_size('-','<?php echo $content_id; ?>',null,'15px');" title="Decrease font-size of block's content"><big>A</big><small>A</small></button>
+		<button onclick="font_size('0','<?php echo $content_id; ?>',null,'15px');" title="Back to the original font-size of block's content"><big>AA</big></button>
+	</div>
+</div>
