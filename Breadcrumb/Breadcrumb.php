@@ -9,7 +9,7 @@
 
 namespace Tool;
 
-use \CarteBlanche\App\Abstracts\AbstractTool;
+use \CarteBlanche\Abstracts\AbstractTool;
 
 class Breadcrumb extends AbstractTool
 {

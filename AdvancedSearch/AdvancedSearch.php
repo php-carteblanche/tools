@@ -10,7 +10,7 @@
 namespace Tool;
 
 use \CarteBlanche\CarteBlanche;
-use \CarteBlanche\App\Abstracts\AbstractToolStorageEngineAware;
+use \CarteBlanche\Abstracts\AbstractToolStorageEngineAware;
 
 /**
  * Build a search request based on a string using logical operators

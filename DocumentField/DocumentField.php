@@ -11,7 +11,7 @@ namespace Tool;
 
 use \CarteBlanche\App\Kernel;
 use \CarteBlanche\App\Router;
-use \CarteBlanche\App\Abstracts\AbstractTool;
+use \CarteBlanche\Abstracts\AbstractTool;
 
 class DocumentField extends AbstractTool
 {
@@ -30,9 +30,9 @@ class DocumentField extends AbstractTool
 	public function buildViewParams()
 	{
 		if (!empty($this->document_content))
-			$document = \CarteBlanche\Lib\File::createFromContent( $this->document_content, $this->document_client_name );
+			$document = \CarteBlanche\Library\File::createFromContent( $this->document_content, $this->document_client_name );
 		elseif (!empty($this->document_path))
-			$document = new \CarteBlanche\Lib\File( $this->document_path );
+			$document = new \CarteBlanche\Library\File( $this->document_path );
 		else return array();
 
 		return array(
