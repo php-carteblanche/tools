@@ -3,15 +3,15 @@
  * CarteBlanche - PHP framework package - Tools
  * Copyleft (c) 2013 Pierre Cassat and contributors
  * <www.ateliers-pierrot.fr> - <contact@ateliers-pierrot.fr>
- * License GPL-3.0 <http://www.opensource.org/licenses/gpl-3.0.html>
- * Sources <https://github.com/atelierspierrot/carte-blanche>
+ * License Apache-2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
+ * Sources <http://github.com/php-carteblanche/carteblanche>
  */
 
 namespace Tool;
 
 use \CarteBlanche\App\Kernel;
 use \CarteBlanche\App\Router;
-use \CarteBlanche\App\Abstracts\AbstractTool;
+use \CarteBlanche\Abstracts\AbstractTool;
 
 class DocumentField extends AbstractTool
 {
@@ -30,9 +30,9 @@ class DocumentField extends AbstractTool
 	public function buildViewParams()
 	{
 		if (!empty($this->document_content))
-			$document = \CarteBlanche\Lib\File::createFromContent( $this->document_content, $this->document_client_name );
+			$document = \CarteBlanche\Library\File::createFromContent( $this->document_content, $this->document_client_name );
 		elseif (!empty($this->document_path))
-			$document = new \CarteBlanche\Lib\File( $this->document_path );
+			$document = new \CarteBlanche\Library\File( $this->document_path );
 		else return array();
 
 		return array(
